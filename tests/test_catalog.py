@@ -218,21 +218,24 @@ def test_find_by_name() -> None:
     assert catalog.find_by_name('15А') == res1
     assert catalog.find_by_name('6Б') == res2
 
-def test_find_by_name_ignores_case() -> None:
-    """Тест поиска названия без учета регистра"""
+def test_find_by_name_partial_match() -> None:
+    """Тест поиска по части названия без учета регистра"""
 
     catalog = TramCatalog()
 
     data = date(2026, 10, 30)
-    route1 = TramRoute('route-000', '15Абё', 'городской', data, True, "дневной")
-    route2 = TramRoute('route-001', '6Б', 'городской', data, False, "дневной")
+    route1 = TramRoute('route-000', '15А', 'городской', data, True, 'дневной')
+    route2 = TramRoute('route-001', '115Аб', 'городской', data, False, 'ночной')
+    route3 = TramRoute('route-002', '6Б', 'пригородный', data, True, 'дневной')
 
     catalog.add(route1)
     catalog.add(route2)
+    catalog.add(route3)
 
-    res: list[TramRoute] = [route1]
+    res: list[TramRoute] = [route1, route2]
 
-    assert catalog.find_by_name('15аБЁ') == res
+    assert catalog.find_by_name('15') == res
+    assert catalog.find_by_name('5а') == res
 
 def test_find_by_name_no_matches() -> None:
     """Тест поиска названия без совпадений."""

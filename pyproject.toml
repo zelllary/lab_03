@@ -9,6 +9,7 @@ dev = [
     "pytest",
     "ruff",
     "mypy",
+    "pre-commit>=4.7.0",
 ]
 
 [build-system]
