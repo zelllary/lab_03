@@ -186,8 +186,8 @@ print(len(catalog))
 print(catalog.get('route-000').name)
 print(catalog.find_by_name('а') == [route])
 
-save_catalog(catalog, 'routes.json')
-loaded_catalog = load_catalog('routes.json')
+save_catalog(catalog, 'output.json')
+loaded_catalog = load_catalog('output.json')
 
 print(list(loaded_catalog) == list(catalog))
 ```
@@ -238,4 +238,7 @@ py -3.14 -m uv run python -m src.tram_catalog
 python -m src.tram_catalog
 ```
 
-Сейчас точка входа содержит пустую функцию `main()`, поэтому запуск завершается без вывода. Работа с каталогом выполняется через классы и функции пакета.
+При запуске выполняется демонстрация: создание и добавление маршрутов,
+поиск, удаление, получение кортежа для чтения, сохранение и загрузка JSON.
+Файл `output.json` создаётся в текущей папке и перезаписывается
+при повторном запуске.
