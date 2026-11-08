@@ -40,12 +40,12 @@ def test_leading_zero_in_name() -> None:
         data = date(2026, 10, 29)
         TramRoute('route-000', '015', 'городской', data, True, "дневной")
 
-def test_letter_in_name() -> None:
+def test_latin_letter_in_name() -> None:
     """Тест на букву в названии маршрута"""
 
     with pytest.raises(InvalidRouteError):
         data = date(2026, 10, 29)
-        TramRoute('route-000', '15A', 'городской', data, True, "дневной")
+        TramRoute('route-000', '15Z', 'городской', data, True, "дневной")
 
 def test_invalid_prefix_id() -> None:
     """Тест на некорректный префикс идентификатора"""
@@ -89,12 +89,12 @@ def test_invalid_date() -> None:
         data = date.today() + timedelta(days=1)
         TramRoute('route-000', '15', 'городской', data, True, "дневной")
 
-def test_latin_letter_in_name() -> None:
-    """Тест на латинскую букву в названии маршрута"""
+def test_number_after_letter_in_name() -> None:
+    """Тест на цифру после букв в названии маршрута"""
 
     with pytest.raises(InvalidRouteError):
         data = date(2026, 10, 30)
-        TramRoute('route-000', '15Z', 'городской', data, True, "дневной")
+        TramRoute('route-000', '15б3', 'городской', data, True, "дневной")
 
 def test_max_letter_in_name() -> None:
     """Тест на превышение количества в названии маршрута"""

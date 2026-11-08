@@ -69,7 +69,7 @@ class TramCatalog:
         # создаем список для маршрутов
         res: list[TramRoute] = []
 
-        # если категория пустая
+        # если категории нет в индексе
         if category not in self._category_index:
             return res
 

@@ -238,7 +238,7 @@ def test_find_by_name_partial_match() -> None:
     assert catalog.find_by_name('5а') == res
 
 def test_find_by_name_no_matches() -> None:
-    """Тест поиска названия без совпадений."""
+    """Тест поиска названия без совпадений"""
 
     catalog = TramCatalog()
     empty_catalog = TramCatalog()
